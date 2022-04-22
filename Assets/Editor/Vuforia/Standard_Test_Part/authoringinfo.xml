@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARInfo>
+<TargetSet version="27.0" toolVersion="10.5.5">
+<ModelTarget name="Standard_Test_Part" targetId="58d26ab1239e4176bca02a2e94628050" version="14.0" toolVersion="10.5.5" bbox="-0.041040 -0.000040 -0.041040 0.041040 0.028041 0.041040" previewImage="58d26ab1239e4176bca02a2e94628050_preview.jpg"/>
+
+</TargetSet>
+
+<Assembly name="Standard_Test_Parts_assembly" assemblyId="94ba01550c98434a84001b889ea8f95f">
+<Part name="Standard_Test_Part" translation="0 0 0" rotation="AD: 0 0 1 0"/>
+<EntryPoint name="viewpoint_0000" translation="-0.00488817 0.0100893 0.308854" rotation="AD: 0.965284 -0.399834 0.965284 211.4" image="" trained="no">
+
+</EntryPoint>
+
+</Assembly>
+
+</QCARInfo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARInfo>
+<TargetSet version="27.0" toolVersion="10.5.5">
+<ModelTarget name="Flange" targetId="e4628ca51537493b83b407179befdaa6" version="14.0" toolVersion="10.5.5" bbox="-0.100094 -0.100094 -0.038898 0.100094 0.100094 0.003406" previewImage="e4628ca51537493b83b407179befdaa6_preview.jpg"/>
+
+</TargetSet>
+
+<Assembly name="Flanges_assembly" assemblyId="1cfadfd8d1f44203b95078d3278878ee">
+<Part name="Flange" translation="0 0 0" rotation="AD: 0 0 1 0"/>
+<EntryPoint name="viewpoint_0000" translation="0.00138657 -0.00946234 0.328734" rotation="AD: -1 0.00856202 0.0209205 44.7112" image="" trained="no">
+
+</EntryPoint>
+<EntryPoint name="viewpoint_0001" translation="-0.00101745 -0.0140971 0.314425" rotation="AD: -0.00491085 2.35021 -1.10501 180.104" image="" trained="no">
+
+</EntryPoint>
+
+</Assembly>
+
+</QCARInfo>

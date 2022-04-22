@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+<Tracking>
+<ModelTarget name="Flange" motionHint="static" trackingMode="default"/>
+
+</Tracking>
+
+<Assembly name="Flanges_assembly" assemblyId="1cfadfd8d1f44203b95078d3278878ee">
+<Part name="Flange" translation="0 0 0" rotation="AD: 0 0 1 0"/>
+<EntryPoint name="viewpoint_0000" translation="0.00138657 -0.00946234 0.328734" rotation="AD: -1 0.00856202 0.0209205 44.7112" trained="no">
+
+</EntryPoint>
+<EntryPoint name="viewpoint_0001" translation="-0.00101745 -0.0140971 0.314425" rotation="AD: -0.00491085 2.35021 -1.10501 180.104" trained="no">
+
+</EntryPoint>
+
+</Assembly>
+
+</QCARConfig>

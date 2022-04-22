@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+<Tracking>
+<ModelTarget name="Shaft" motionHint="adaptive" trackingMode="default"/>
+
+</Tracking>
+
+<Assembly name="Shafts_assembly" assemblyId="7a6ffca0e5ea49f49433a22a43a72e4c">
+<Part name="Shaft" translation="0 0 0" rotation="AD: 0 0 1 0"/>
+<EntryPoint name="viewpoint_0000" translation="0.000720069 0.0236942 0.199642" rotation="AD: 0.644948 -0.865684 2.08995 192.959" trained="no">
+
+</EntryPoint>
+
+</Assembly>
+
+</QCARConfig>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARInfo>
+<TargetSet version="27.0" toolVersion="10.5.5">
+<ModelTarget name="Shaft" targetId="b0360555725249d7b0ea56d6dd7ffcd1" version="14.0" toolVersion="10.5.5" bbox="-0.013758 -0.013811 -0.047865 0.013811 0.013758 0.188485" previewImage="b0360555725249d7b0ea56d6dd7ffcd1_preview.jpg"/>
+
+</TargetSet>
+
+<Assembly name="Shafts_assembly" assemblyId="7a6ffca0e5ea49f49433a22a43a72e4c">
+<Part name="Shaft" translation="0 0 0" rotation="AD: 0 0 1 0"/>
+<EntryPoint name="viewpoint_0000" translation="0.000720069 0.0236942 0.199642" rotation="AD: 0.644948 -0.865684 2.08995 192.959" image="" trained="no">
+
+</EntryPoint>
+
+</Assembly>
+
+</QCARInfo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<QCARInfo>
+    <TargetSet version="33.0" toolVersion="v5.2.0-11-g13bb334">
+        <ModelTarget name="Flange-AMT" targetId="bb0218853d6148c89ac540b5a177d8ba" bbox="-0.099996 -0.099996 -0.038800 0.099996 0.099996 0.003300" version="11.1" toolVersion="v5.2.0-11-g13bb334" trackingMode="default" upVector="0.0 0.0 -1.0" />
+        <ModelTarget name="Shaft" targetId="8255efd2f7dc42a0a59d73f0ee6b76c2" bbox="-0.013696 -0.013696 -0.047750 0.013696 0.013696 0.188370" version="11.1" toolVersion="v5.2.0-11-g13bb334" trackingMode="default" upVector="0.0 1.0 0.0" />
+    </TargetSet>
+    <Assembly name="Flange-AMT" assemblyId="11ac2fb6c1ac423ba194ebd7ee0e9159">
+        <Part name="Flange-AMT" translation="0 0 0" rotation="AD: 0 0 1 0" />
+        <EntryPoint image="viewpoint_0001.png" rotation="AD: -0.9313875057712934 0.12215570630844513 0.3429217075505919 50.35029141085306" translation="0.002356290307783971 -0.01224742468963158 0.30366388187272353" name="viewpoint_0001" trained="yes" />
+    </Assembly>
+    <Assembly name="Shaft" assemblyId="dae4018cf8944448b5352b2de1529c9c">
+        <Part name="Shaft" translation="0 0 0" rotation="AD: 0 0 1 0" />
+        <EntryPoint image="viewpoint_0000.png" rotation="AD: -0.27417957759167627 0.36801843356298714 -0.8884750935110647 167.04148492814116" translation="7.20069823132832E-4 0.023694242955001367 0.1996422781227884" name="viewpoint_0000" trained="yes" />
+    </Assembly>
+    <ModelTargetDatabase mtDBid="599398c92d6b40429c6f153bf0e7af15" name="Flange-AMT" toolVersion="v5.2.0-11-g13bb334" version="33.0">
+        <RecognitionResult assemblyId="11ac2fb6c1ac423ba194ebd7ee0e9159" assemblyName="Flange-AMT" entryPoint="viewpoint_0001" />
+        <RecognitionResult assemblyId="dae4018cf8944448b5352b2de1529c9c" assemblyName="Shaft" entryPoint="viewpoint_0000" />
+    </ModelTargetDatabase>
+</QCARInfo>
