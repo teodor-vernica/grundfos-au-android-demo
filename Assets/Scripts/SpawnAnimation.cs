@@ -13,6 +13,7 @@ public class SpawnAnimation : MonoBehaviour
     {
         //Debug.Log("Starting.");
         MakeTransparent();
+        //StartFadeIn();
 
         //StartCoroutine(FadeIn3D(this.transform, 0, true, 10));
 
@@ -21,16 +22,19 @@ public class SpawnAnimation : MonoBehaviour
     private void Update()
     {
 
-        Debug.Log(GetComponent<Renderer>().material.color.a);
+        //Debug.Log(fadeIn + " color: " + material.color.a);
+        
+        material = GetComponent<Renderer>().material;
+        color = material.color;
+
         if (fadeIn && material.color.a < 1f)
         {
-            
-            material = GetComponent<Renderer>().material;
-            color = material.color;
+            Debug.Log("Fading in.");
             //Debug.Log("time: " + Time.deltaTime + " fade: " + fadePerSecond * Time.deltaTime);
-            material.color = new Color(color.r, color.g, color.b, color.a + (fadePerSecond * Time.deltaTime) );
+            //material.color = new Color(color.r, color.g, color.b, color.a + (fadePerSecond * Time.deltaTime) );
+            material.color = new Color(color.r, color.g, color.b, color.a + fadePerSecond);
 
-            Debug.Log("a: " + color.a);
+
         }
         /*else if(fadeOut && material.color.a > 0f)
         {
@@ -41,8 +45,10 @@ public class SpawnAnimation : MonoBehaviour
         }*/
         else
         {
+            //Debug.Log("Stopped fade in.");
+            //Debug.Log("a: " + color.a);
             fadeIn = false;
-            GetComponent<Renderer>().material.SetInt("_Mode", 0); // Opaque
+            //material.SetInt("_Mode", 0); // Opaque
         }
             
     }
@@ -59,6 +65,7 @@ public class SpawnAnimation : MonoBehaviour
 
     public void MakeTransparent()
     {
+        Debug.Log("Making transparent.");
         material = GetComponent<Renderer>().material;
         material.SetInt("_Mode", 2); // Fade
         color = material.color;
