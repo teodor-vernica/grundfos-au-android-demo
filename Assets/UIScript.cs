@@ -6,165 +6,104 @@ using Vuforia;
 
 public class UIScript : MonoBehaviour
 {
-    public GameObject modelTarget1, modelTarget2;
-    public GameObject flange128, flange128Transparent, flange256, flange256Transparent, flange512;
-    public GameObject flange256Blue, flange256BlueTransparent;
+    public GameObject modelTarget;
+    public GameObject flangePower, flangePowerTransparent;
+    public GameObject flangeWater, flangeWaterTransparent;
+    public GameObject legendPower, legendWater;
     GameObject currentGameObject;
 
     public bool transparent = false;
 
-    public Dropdown dropdownModel, dropdownResolution, dropdownResource;
+    //process? -> casting, machining
+
+    public Dropdown dropdownResource;
     public Toggle toggleTransparent;
     public Slider sliderTransparency;
 
-    int dropdownModelValue = 0;
-    int dropdownResolutionValue = 0;
     int dropdownResourceValue = 0;
     float sliderTransparencyValue = 0f;
     // Start is called before the first frame update
     void Start()
     {
-        currentGameObject = flange128;   
+        currentGameObject = flangePower;   
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if(dropdownModel.value != dropdownModelValue)
+    { 
+        if(toggleTransparent.isOn != transparent || dropdownResource.value != dropdownResourceValue)
         {
-            dropdownModelValue = dropdownModel.value;
-            if (dropdownModelValue == 0)
-            {
-                modelTarget2.SetActive(false);
-                modelTarget1.SetActive(true);
-            }
-            else
-            {
-                modelTarget1.SetActive(false);
-                modelTarget2.SetActive(true);
-            }
-                
-        }
-
-        if(dropdownResolution.value != dropdownResolutionValue || toggleTransparent.isOn != transparent || dropdownResource.value != dropdownResourceValue)
-        {
-            dropdownResolutionValue = dropdownResolution.value;
             transparent = toggleTransparent.isOn;
             dropdownResourceValue = dropdownResource.value;
 
-            if (dropdownResolutionValue == 0 && toggleTransparent.isOn && dropdownResourceValue == 0)
+            if(toggleTransparent.isOn && dropdownResourceValue == 0)
             {
-                flange128.SetActive(false);
-                flange128Transparent.SetActive(true);
-                flange256.SetActive(false);
-                flange256Transparent.SetActive(false);
-                flange512.SetActive(false);
+                flangePower.SetActive(false);
+                flangePowerTransparent.SetActive(true);
 
-                flange256Blue.SetActive(false);
-                flange256BlueTransparent.SetActive(false);
+                flangeWater.SetActive(false);
+                flangeWaterTransparent.SetActive(false);
 
-                flange128Transparent.GetComponent<SpawnAnimation>().StartFadeIn();
+                legendWater.SetActive(false);
+                legendPower.SetActive(true);
 
-                currentGameObject = flange128Transparent;
+                flangePowerTransparent.GetComponent<SpawnAnimation>().StartFadeIn();
 
-                //flange128.GetComponent<SpawnAnimation>().StartFadeOut();
+                currentGameObject = flangePowerTransparent;
             }
-            else if(dropdownResolutionValue == 0 && !toggleTransparent.isOn && dropdownResourceValue == 0)
+            else if (!toggleTransparent.isOn && dropdownResourceValue == 0)
             {
-                flange128.SetActive(true);
-                flange128Transparent.SetActive(false);
-                flange256.SetActive(false);
-                flange256Transparent.SetActive(false);
-                flange512.SetActive(false);
+                flangePower.SetActive(true);
+                flangePowerTransparent.SetActive(false);
 
-                flange256Blue.SetActive(false);
-                flange256BlueTransparent.SetActive(false);
+                flangeWater.SetActive(false);
+                flangeWaterTransparent.SetActive(false);
 
-                flange128.GetComponent<SpawnAnimation>().StartFadeIn();
+                legendWater.SetActive(false);
+                legendPower.SetActive(true);
 
-                currentGameObject = flange128;
-            }
-            else if(dropdownResolutionValue == 1 && toggleTransparent.isOn && dropdownResourceValue == 0)
-            {
-                flange128.SetActive(false);
-                flange128Transparent.SetActive(false);
-                flange256.SetActive(false);
-                flange256Transparent.SetActive(true);
-                flange512.SetActive(false);
+                flangePower.GetComponent<SpawnAnimation>().StartFadeIn();
 
-                flange256Blue.SetActive(false);
-                flange256BlueTransparent.SetActive(false);
-
-                flange256Transparent.GetComponent<SpawnAnimation>().StartFadeIn();
-
-                currentGameObject = flange256Transparent;
-            }
-            else if (dropdownResolutionValue == 1 && !toggleTransparent.isOn && dropdownResourceValue == 0)
-            {
-                flange128.SetActive(false);
-                flange128Transparent.SetActive(false);
-                flange256.SetActive(true);
-                flange256Transparent.SetActive(false);
-                flange512.SetActive(false);
-
-                flange256Blue.SetActive(false);
-                flange256BlueTransparent.SetActive(false);
-
-                flange256.GetComponent<SpawnAnimation>().StartFadeIn();
-
-                currentGameObject = flange256;
-            }
-            else if (dropdownResolutionValue == 2 && dropdownResourceValue == 0)
-            {
-                flange128.SetActive(false);
-                flange128Transparent.SetActive(false);
-                flange256.SetActive(false);
-                flange256Transparent.SetActive(false);
-                flange512.SetActive(true);
-
-                flange256Blue.SetActive(false);
-                flange256BlueTransparent.SetActive(false);
-
-                flange512.GetComponent<SpawnAnimation>().StartFadeIn();
-
-                currentGameObject = flange512;
+                currentGameObject = flangePower;
             }
             //Switch resource
             else if(dropdownResourceValue == 1 && toggleTransparent.isOn)
             {
-                flange128.SetActive(false);
-                flange128Transparent.SetActive(false);
-                flange256.SetActive(false);
-                flange256Transparent.SetActive(false);
-                flange512.SetActive(false);
-                flange256Blue.SetActive(false);
+                flangePower.SetActive(false);
+                flangePowerTransparent.SetActive(false);
+                flangeWater.SetActive(false);
 
-                flange256BlueTransparent.SetActive(true);
+                flangeWaterTransparent.SetActive(true);
 
-                flange256BlueTransparent.GetComponent<SpawnAnimation>().StartFadeIn();
+                legendWater.SetActive(true);
+                legendPower.SetActive(false);
 
-                currentGameObject = flange256BlueTransparent;
+                flangeWaterTransparent.GetComponent<SpawnAnimation>().StartFadeIn();
+
+                currentGameObject = flangeWaterTransparent;
             }
             else if (dropdownResourceValue == 1 && !toggleTransparent.isOn)
             {
-                flange128.SetActive(false);
-                flange128Transparent.SetActive(false);
-                flange256.SetActive(false);
-                flange256Transparent.SetActive(false);
-                flange512.SetActive(false);
-                flange256BlueTransparent.SetActive(false);
+                flangePower.SetActive(false);
+                flangePowerTransparent.SetActive(false);
+                flangeWaterTransparent.SetActive(false);
 
-                flange256Blue.SetActive(true);
+                flangeWater.SetActive(true);
 
-                flange256Blue.GetComponent<SpawnAnimation>().StartFadeIn();
+                legendWater.SetActive(true);
+                legendPower.SetActive(false);
 
-                currentGameObject = flange256Blue;
+                flangeWater.GetComponent<SpawnAnimation>().StartFadeIn();
+
+                currentGameObject = flangeWater;
             }
         }
         
         if(sliderTransparency.value != sliderTransparencyValue)
         {
-            sliderTransparencyValue = sliderTransparency.value;
+            //0.05 for max val = 20
+            sliderTransparencyValue = sliderTransparency.value * 0.1f;
+            sliderTransparency.gameObject.transform.Find("Label").GetComponent<Text>().text = "Opacity: " + sliderTransparencyValue*100 + "%";
             Color currentColor = currentGameObject.GetComponent<Renderer>().material.color;
             currentGameObject.GetComponent<Renderer>().material.color = new Color(currentColor.r, currentColor.g, currentColor.b, sliderTransparencyValue);
         }
