@@ -7,95 +7,160 @@ using Vuforia;
 public class UIScript : MonoBehaviour
 {
     public GameObject modelTarget;
-    public GameObject flangePower, flangePowerTransparent;
-    public GameObject flangeWater, flangeWaterTransparent;
-    public GameObject legendPower, legendWater;
+    public GameObject flangePowerMolding, flangePowerMilling, flangePowerMillingDifference;
+    public GameObject flangeWaterMolding, flangeWaterMilling, flangeWaterMillingDifference;
+    public GameObject legendPowerMolding, legendPowerMilling, legendWaterMolding, legendWaterMilling;
     GameObject currentGameObject;
 
-    public bool transparent = false;
+    public bool difference = false;
 
     //process? -> casting, machining
 
-    public Dropdown dropdownResource;
-    public Toggle toggleTransparent;
+    public Dropdown dropdownProcess, dropdownResource;
+    public Toggle toggleDifference;
     public Slider sliderTransparency;
 
-    int dropdownResourceValue = 0;
+    int dropdownProcessValue = 0, dropdownResourceValue = 0;
     float sliderTransparencyValue = 0f;
+
+    float initialSrc, initialDst; 
+    int initiallRenderQueue;
     // Start is called before the first frame update
     void Start()
     {
-        currentGameObject = flangePower;   
+        currentGameObject = flangePowerMolding;
+        
+        initialSrc = currentGameObject.GetComponent<Renderer>().material.GetFloat("_SrcBlend");
+        initialDst = currentGameObject.GetComponent<Renderer>().material.GetFloat("_DstBlend");
+        initiallRenderQueue = currentGameObject.GetComponent<Renderer>().material.renderQueue;
     }
 
     // Update is called once per frame
     void Update()
     { 
-        if(toggleTransparent.isOn != transparent || dropdownResource.value != dropdownResourceValue)
+        if(dropdownProcess.value != dropdownProcessValue || dropdownResource.value != dropdownResourceValue || toggleDifference.isOn != difference)
         {
-            transparent = toggleTransparent.isOn;
+            dropdownProcessValue = dropdownProcess.value;
             dropdownResourceValue = dropdownResource.value;
+            difference = toggleDifference.isOn;
 
-            if(toggleTransparent.isOn && dropdownResourceValue == 0)
+            if(dropdownResourceValue == 0 && dropdownProcessValue == 0 ) // Power - Molding
             {
-                flangePower.SetActive(false);
-                flangePowerTransparent.SetActive(true);
+                flangePowerMolding.SetActive(true);
+                flangePowerMilling.SetActive(false);
+                flangePowerMillingDifference.SetActive(false);
 
-                flangeWater.SetActive(false);
-                flangeWaterTransparent.SetActive(false);
+                flangeWaterMolding.SetActive(false);
+                flangeWaterMilling.SetActive(false);
+                flangeWaterMillingDifference.SetActive(false);
 
-                legendWater.SetActive(false);
-                legendPower.SetActive(true);
+                legendPowerMolding.SetActive(true);
+                legendPowerMilling.SetActive(false);
+                legendWaterMolding.SetActive(false);
+                legendWaterMilling.SetActive(false);
 
-                flangePowerTransparent.GetComponent<SpawnAnimation>().StartFadeIn();
+                toggleDifference.isOn = false;
+                toggleDifference.interactable = false;
 
-                currentGameObject = flangePowerTransparent;
+                currentGameObject = flangePowerMolding;
             }
-            else if (!toggleTransparent.isOn && dropdownResourceValue == 0)
+            else if (dropdownResourceValue == 0 && dropdownProcessValue == 1 && !toggleDifference.isOn) // Power - Milling
             {
-                flangePower.SetActive(true);
-                flangePowerTransparent.SetActive(false);
+                flangePowerMolding.SetActive(false);
+                flangePowerMilling.SetActive(true);
+                flangePowerMillingDifference.SetActive(false);
 
-                flangeWater.SetActive(false);
-                flangeWaterTransparent.SetActive(false);
+                flangeWaterMolding.SetActive(false);
+                flangeWaterMilling.SetActive(false);
+                flangeWaterMillingDifference.SetActive(false);
 
-                legendWater.SetActive(false);
-                legendPower.SetActive(true);
+                legendPowerMolding.SetActive(false);
+                legendPowerMilling.SetActive(true);
+                legendWaterMolding.SetActive(false);
+                legendWaterMilling.SetActive(false);
 
-                flangePower.GetComponent<SpawnAnimation>().StartFadeIn();
+                toggleDifference.interactable = true;
 
-                currentGameObject = flangePower;
+                currentGameObject = flangePowerMilling;
             }
+            else if (dropdownResourceValue == 0 && dropdownProcessValue == 1 &&  toggleDifference.isOn) // Power - Milling - Difference
+            {
+                flangePowerMolding.SetActive(false);
+                flangePowerMilling.SetActive(false);
+                flangePowerMillingDifference.SetActive(true);
+
+                flangeWaterMolding.SetActive(false);
+                flangeWaterMilling.SetActive(false);
+                flangeWaterMillingDifference.SetActive(false);
+
+                legendPowerMolding.SetActive(false);
+                legendPowerMilling.SetActive(true);
+                legendWaterMolding.SetActive(false);
+                legendWaterMilling.SetActive(false);
+
+                toggleDifference.interactable = true;
+
+                currentGameObject = flangePowerMillingDifference;
+            }
+
             //Switch resource
-            else if(dropdownResourceValue == 1 && toggleTransparent.isOn)
+            else if(dropdownResourceValue == 1 && dropdownProcessValue == 0) //Water - Molding
             {
-                flangePower.SetActive(false);
-                flangePowerTransparent.SetActive(false);
-                flangeWater.SetActive(false);
+                flangePowerMolding.SetActive(false);
+                flangePowerMilling.SetActive(false);
+                flangePowerMillingDifference.SetActive(false);
 
-                flangeWaterTransparent.SetActive(true);
+                flangeWaterMolding.SetActive(true);
+                flangeWaterMilling.SetActive(false);
+                flangeWaterMillingDifference.SetActive(false);
 
-                legendWater.SetActive(true);
-                legendPower.SetActive(false);
+                legendPowerMolding.SetActive(false);
+                legendPowerMilling.SetActive(false);
+                legendWaterMolding.SetActive(true);
+                legendWaterMilling.SetActive(false);
 
-                flangeWaterTransparent.GetComponent<SpawnAnimation>().StartFadeIn();
+                toggleDifference.isOn = false;
+                toggleDifference.interactable = false;
 
-                currentGameObject = flangeWaterTransparent;
+                currentGameObject = flangeWaterMolding;
             }
-            else if (dropdownResourceValue == 1 && !toggleTransparent.isOn)
+            else if (dropdownResourceValue == 1 && dropdownProcessValue == 1 && !toggleDifference.isOn) //Water - Milling
             {
-                flangePower.SetActive(false);
-                flangePowerTransparent.SetActive(false);
-                flangeWaterTransparent.SetActive(false);
+                flangePowerMolding.SetActive(false);
+                flangePowerMilling.SetActive(false);
+                flangePowerMillingDifference.SetActive(false);
 
-                flangeWater.SetActive(true);
+                flangeWaterMolding.SetActive(false);
+                flangeWaterMilling.SetActive(true);
+                flangeWaterMillingDifference.SetActive(false);
 
-                legendWater.SetActive(true);
-                legendPower.SetActive(false);
+                legendPowerMolding.SetActive(false);
+                legendPowerMilling.SetActive(false);
+                legendWaterMolding.SetActive(false);
+                legendWaterMilling.SetActive(true);
 
-                flangeWater.GetComponent<SpawnAnimation>().StartFadeIn();
+                toggleDifference.interactable = true;
 
-                currentGameObject = flangeWater;
+                currentGameObject = flangeWaterMilling;
+            }
+            else if (dropdownResourceValue == 1 && dropdownProcessValue == 1 && toggleDifference.isOn) //Water - Milling - Difference
+            {
+                flangePowerMolding.SetActive(false);
+                flangePowerMilling.SetActive(false);
+                flangePowerMillingDifference.SetActive(false);
+
+                flangeWaterMolding.SetActive(false);
+                flangeWaterMilling.SetActive(false);
+                flangeWaterMillingDifference.SetActive(true);
+
+                legendPowerMolding.SetActive(false);
+                legendPowerMilling.SetActive(false);
+                legendWaterMolding.SetActive(false);
+                legendWaterMilling.SetActive(true);
+
+                toggleDifference.interactable = true;
+
+                currentGameObject = flangeWaterMillingDifference;
             }
         }
         
@@ -103,9 +168,30 @@ public class UIScript : MonoBehaviour
         {
             //0.05 for max val = 20
             sliderTransparencyValue = sliderTransparency.value * 0.1f;
+
+            /*if(sliderTransparencyValue < 1)
+            {
+                Debug.Log("Setting mode to Fade.");
+                currentGameObject.GetComponent<Renderer>().material.SetInt("_Mode", 2); // Fade
+                currentGameObject.GetComponent<Renderer>().material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                currentGameObject.GetComponent<Renderer>().material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                currentGameObject.GetComponent<Renderer>().material.renderQueue = 3000;
+            }*/
+
             sliderTransparency.gameObject.transform.Find("Label").GetComponent<Text>().text = "Opacity: " + sliderTransparencyValue*100 + "%";
             Color currentColor = currentGameObject.GetComponent<Renderer>().material.color;
             currentGameObject.GetComponent<Renderer>().material.color = new Color(currentColor.r, currentColor.g, currentColor.b, sliderTransparencyValue);
+
+            //currentGameObject.GetComponent<Renderer>().material.SetFloat("_Metallic", sliderTransparencyValue); // Opaque
+
+            /*if (sliderTransparencyValue == 1)
+            {
+                Debug.Log("Setting mode to Opaque.");
+                currentGameObject.GetComponent<Renderer>().material.SetInt("_Mode", 0); // Opaque
+                currentGameObject.GetComponent<Renderer>().material.SetFloat("_SrcBlend", initialSrc);
+                currentGameObject.GetComponent<Renderer>().material.SetFloat("_DstBlend", initialDst);
+                currentGameObject.GetComponent<Renderer>().material.renderQueue = initiallRenderQueue;
+            }*/
         }
     }
 }
