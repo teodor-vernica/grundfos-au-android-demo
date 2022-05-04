@@ -168,6 +168,7 @@ public class UIScript : MonoBehaviour
         {
             //0.05 for max val = 20
             sliderTransparencyValue = sliderTransparency.value * 0.1f;
+            Debug.Log("Transparency: " + sliderTransparencyValue);
 
             /*if(sliderTransparencyValue < 1)
             {
@@ -178,9 +179,9 @@ public class UIScript : MonoBehaviour
                 currentGameObject.GetComponent<Renderer>().material.renderQueue = 3000;
             }*/
 
-            sliderTransparency.gameObject.transform.Find("Label").GetComponent<Text>().text = "Opacity: " + sliderTransparencyValue*100 + "%";
+            sliderTransparency.gameObject.transform.Find("Label").GetComponent<Text>().text = "Transparency: " + sliderTransparencyValue*100 + "%";
             Color currentColor = currentGameObject.GetComponent<Renderer>().material.color;
-            currentGameObject.GetComponent<Renderer>().material.color = new Color(currentColor.r, currentColor.g, currentColor.b, sliderTransparencyValue);
+            currentGameObject.GetComponent<Renderer>().material.color = new Color(currentColor.r, currentColor.g, currentColor.b, 1-sliderTransparencyValue);
 
             //currentGameObject.GetComponent<Renderer>().material.SetFloat("_Metallic", sliderTransparencyValue); // Opaque
 
