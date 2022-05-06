@@ -139,7 +139,8 @@ public class UIScript : MonoBehaviour
                 legendWaterMolding.SetActive(false);
                 legendWaterMilling.SetActive(true);
 
-                toggleDifference.interactable = true;
+                toggleDifference.interactable = false;
+                toggleDifference.isOn = false;
 
                 currentGameObject = flangeWaterMilling;
             }
@@ -158,7 +159,8 @@ public class UIScript : MonoBehaviour
                 legendWaterMolding.SetActive(false);
                 legendWaterMilling.SetActive(true);
 
-                toggleDifference.interactable = true;
+                toggleDifference.interactable = false;
+                toggleDifference.isOn = false;
 
                 currentGameObject = flangeWaterMillingDifference;
             }
